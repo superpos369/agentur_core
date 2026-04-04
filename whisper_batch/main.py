@@ -371,15 +371,7 @@ async def upload(files: list[UploadFile] = File(...)):
             await buf.write(await f.read())
         saved.append(f.filename)
 
-    return HTMLResponse(f"""
-    <html><body style="font-family:monospace;background:#0a0a0a;color:#7fffb2;padding:40px">
-    <h2>✅ {len(saved)} Dateien hochgeladen</h2>
-    <ul style="list-style:none;margin-top:16px">
-      {''.join(f'<li style="padding:4px 0;color:#aaa">— {n}</li>' for n in saved)}
-    </ul>
-    <br><a href="/" style="color:#7fffb2;border:1px solid #7fffb2;padding:10px 20px;border-radius:4px;text-decoration:none">← Zurück zum Dashboard</a>
-    </body></html>
-    """)
+    return HTMLResponse('<meta http-equiv="refresh" content="0; url=/" />')
 
 
 @app.post("/start")
